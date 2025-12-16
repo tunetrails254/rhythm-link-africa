@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Music, Users, Calendar, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export const HeroSection = () => {
   return (
@@ -38,12 +39,14 @@ export const HeroSection = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 animate-slide-up delay-300">
-            <Button size="xl" variant="hero" className="group">
-              Start Learning
-              <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            <Button size="xl" variant="hero" className="group" asChild>
+              <Link to="/teachers">
+                Start Learning
+                <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </Link>
             </Button>
-            <Button size="xl" variant="outline">
-              Hire Musicians
+            <Button size="xl" variant="outline" asChild>
+              <Link to="/auth">Hire Musicians</Link>
             </Button>
           </div>
 

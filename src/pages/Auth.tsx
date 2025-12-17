@@ -101,8 +101,14 @@ const Auth = () => {
     } else {
       toast({ 
         title: 'Account Created!', 
-        description: 'Please check your email to verify your account.' 
+        description: userType === 'teacher' 
+          ? 'Please complete your teacher profile.' 
+          : 'Please check your email to verify your account.' 
       });
+      // Redirect teachers to complete their profile
+      if (userType === 'teacher') {
+        navigate('/teacher-onboarding');
+      }
     }
     
     setLoading(false);

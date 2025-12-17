@@ -71,7 +71,8 @@ const Teachers = () => {
   const fetchTeachers = async () => {
     setLoading(true);
     
-    const { data, error } = await supabase
+    // First get teacher profiles
+    const { data: teacherData, error: teacherError } = await supabase
       .from('teacher_profiles')
       .select(`
         id,
@@ -83,12 +84,6 @@ const Teachers = () => {
         is_in_person_available,
         rating,
         total_reviews,
-        profiles!teacher_profiles_user_id_fkey (
-          full_name,
-          avatar_url,
-          location,
-          bio
-        ),
         teacher_instruments (
           instrument_id,
           instruments (
@@ -98,12 +93,32 @@ const Teachers = () => {
       `)
       .order('rating', { ascending: false });
 
-    if (error) {
-      console.error('Error fetching teachers:', error);
-    } else if (data) {
-      setTeachers(data as unknown as TeacherData[]);
+    if (teacherError) {
+      console.error('Error fetching teachers:', teacherError);
+      setLoading(false);
+      return;
     }
-    
+
+    if (!teacherData || teacherData.length === 0) {
+      setTeachers([]);
+      setLoading(false);
+      return;
+    }
+
+    // Get profiles for all teacher user_ids
+    const userIds = teacherData.map(t => t.user_id);
+    const { data: profilesData } = await supabase
+      .from('profiles')
+      .select('id, full_name, avatar_url, location, bio')
+      .in('id', userIds);
+
+    // Merge the data
+    const mergedData = teacherData.map(teacher => ({
+      ...teacher,
+      profiles: profilesData?.find(p => p.id === teacher.user_id) || null
+    }));
+
+    setTeachers(mergedData as unknown as TeacherData[]);
     setLoading(false);
   };
 

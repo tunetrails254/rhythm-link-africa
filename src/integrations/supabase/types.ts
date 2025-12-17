@@ -14,6 +14,134 @@ export type Database = {
   }
   public: {
     Tables: {
+      gig_bookings: {
+        Row: {
+          client_id: string
+          created_at: string | null
+          duration_hours: number | null
+          event_date: string
+          event_type: string
+          gig_profile_id: string
+          id: string
+          location: string | null
+          meeting_link: string | null
+          special_requests: string | null
+          start_time: string
+          status: string | null
+          total_price: number
+          updated_at: string | null
+          venue: string | null
+        }
+        Insert: {
+          client_id: string
+          created_at?: string | null
+          duration_hours?: number | null
+          event_date: string
+          event_type: string
+          gig_profile_id: string
+          id?: string
+          location?: string | null
+          meeting_link?: string | null
+          special_requests?: string | null
+          start_time: string
+          status?: string | null
+          total_price: number
+          updated_at?: string | null
+          venue?: string | null
+        }
+        Update: {
+          client_id?: string
+          created_at?: string | null
+          duration_hours?: number | null
+          event_date?: string
+          event_type?: string
+          gig_profile_id?: string
+          id?: string
+          location?: string | null
+          meeting_link?: string | null
+          special_requests?: string | null
+          start_time?: string
+          status?: string | null
+          total_price?: number
+          updated_at?: string | null
+          venue?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "gig_bookings_gig_profile_id_fkey"
+            columns: ["gig_profile_id"]
+            isOneToOne: false
+            referencedRelation: "gig_profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      gig_profiles: {
+        Row: {
+          audio_urls: string[] | null
+          base_price: number | null
+          bio: string | null
+          created_at: string | null
+          genres: string[] | null
+          id: string
+          is_available: boolean | null
+          location: string | null
+          performer_type: string | null
+          price_per_hour: number | null
+          rating: number | null
+          setlist: string | null
+          stage_name: string
+          tech_rider: string | null
+          total_gigs: number | null
+          total_reviews: number | null
+          updated_at: string | null
+          user_id: string
+          video_urls: string[] | null
+        }
+        Insert: {
+          audio_urls?: string[] | null
+          base_price?: number | null
+          bio?: string | null
+          created_at?: string | null
+          genres?: string[] | null
+          id?: string
+          is_available?: boolean | null
+          location?: string | null
+          performer_type?: string | null
+          price_per_hour?: number | null
+          rating?: number | null
+          setlist?: string | null
+          stage_name: string
+          tech_rider?: string | null
+          total_gigs?: number | null
+          total_reviews?: number | null
+          updated_at?: string | null
+          user_id: string
+          video_urls?: string[] | null
+        }
+        Update: {
+          audio_urls?: string[] | null
+          base_price?: number | null
+          bio?: string | null
+          created_at?: string | null
+          genres?: string[] | null
+          id?: string
+          is_available?: boolean | null
+          location?: string | null
+          performer_type?: string | null
+          price_per_hour?: number | null
+          rating?: number | null
+          setlist?: string | null
+          stage_name?: string
+          tech_rider?: string | null
+          total_gigs?: number | null
+          total_reviews?: number | null
+          updated_at?: string | null
+          user_id?: string
+          video_urls?: string[] | null
+        }
+        Relationships: []
+      }
       instruments: {
         Row: {
           category: string | null
@@ -238,6 +366,30 @@ export type Database = {
           created_at?: string
           id?: string
           role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
+      wallets: {
+        Row: {
+          balance: number | null
+          created_at: string | null
+          id: string
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          balance?: number | null
+          created_at?: string | null
+          id?: string
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          balance?: number | null
+          created_at?: string | null
+          id?: string
+          updated_at?: string | null
           user_id?: string
         }
         Relationships: []

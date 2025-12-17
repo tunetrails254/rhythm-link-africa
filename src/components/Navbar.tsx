@@ -35,18 +35,19 @@ export const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            <a href="/#features" className="text-muted-foreground hover:text-foreground transition-colors font-medium">
-              Features
-            </a>
-            <a href="/#how-it-works" className="text-muted-foreground hover:text-foreground transition-colors font-medium">
-              How It Works
-            </a>
             <Link to="/teachers" className="text-muted-foreground hover:text-foreground transition-colors font-medium">
               Find Teachers
             </Link>
-            <a href="/#gigs" className="text-muted-foreground hover:text-foreground transition-colors font-medium">
-              Gig Marketplace
-            </a>
+            <Link to="/gigs" className="text-muted-foreground hover:text-foreground transition-colors font-medium">
+              Hire Musicians
+            </Link>
+            {user && (
+              <>
+                <Link to="/student-dashboard" className="text-muted-foreground hover:text-foreground transition-colors font-medium">
+                  My Lessons
+                </Link>
+              </>
+            )}
           </div>
 
           {/* CTA Buttons */}
@@ -59,6 +60,12 @@ export const Navbar = () => {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
+                  <DropdownMenuItem onClick={() => navigate('/student-dashboard')}>
+                    My Lessons
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => navigate('/teacher-dashboard')}>
+                    Teacher Dashboard
+                  </DropdownMenuItem>
                   <DropdownMenuItem onClick={handleSignOut}>
                     <LogOut className="h-4 w-4 mr-2" />
                     Sign Out
@@ -91,18 +98,22 @@ export const Navbar = () => {
         {isOpen && (
           <div className="md:hidden py-4 border-t border-border/50 animate-fade-in">
             <div className="flex flex-col gap-4">
-              <a href="/#features" className="text-muted-foreground hover:text-foreground transition-colors font-medium py-2">
-                Features
-              </a>
-              <a href="/#how-it-works" className="text-muted-foreground hover:text-foreground transition-colors font-medium py-2">
-                How It Works
-              </a>
               <Link to="/teachers" className="text-muted-foreground hover:text-foreground transition-colors font-medium py-2" onClick={() => setIsOpen(false)}>
                 Find Teachers
               </Link>
-              <a href="/#gigs" className="text-muted-foreground hover:text-foreground transition-colors font-medium py-2">
-                Gig Marketplace
-              </a>
+              <Link to="/gigs" className="text-muted-foreground hover:text-foreground transition-colors font-medium py-2" onClick={() => setIsOpen(false)}>
+                Hire Musicians
+              </Link>
+              {user && (
+                <>
+                  <Link to="/student-dashboard" className="text-muted-foreground hover:text-foreground transition-colors font-medium py-2" onClick={() => setIsOpen(false)}>
+                    My Lessons
+                  </Link>
+                  <Link to="/teacher-dashboard" className="text-muted-foreground hover:text-foreground transition-colors font-medium py-2" onClick={() => setIsOpen(false)}>
+                    Teacher Dashboard
+                  </Link>
+                </>
+              )}
               <div className="flex flex-col gap-2 pt-4 border-t border-border/50">
                 {user ? (
                   <Button variant="ghost" className="w-full" onClick={handleSignOut}>

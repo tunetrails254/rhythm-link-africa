@@ -9,6 +9,7 @@ import Auth from "./pages/Auth";
 import Teachers from "./pages/Teachers";
 import TeacherDetail from "./pages/TeacherDetail";
 import Gigs from "./pages/Gigs";
+import GigOnboarding from "./pages/GigOnboarding";
 import StudentDashboard from "./pages/StudentDashboard";
 import TeacherDashboard from "./pages/TeacherDashboard";
 import TeacherOnboarding from "./pages/TeacherOnboarding";
@@ -29,6 +30,7 @@ const App = () => (
             <Route path="/teachers" element={<Teachers />} />
             <Route path="/teachers/:id" element={<TeacherDetail />} />
             <Route path="/gigs" element={<Gigs />} />
+            <Route path="/gig-onboarding" element={<GigOnboarding />} />
             <Route path="/student-dashboard" element={<StudentDashboard />} />
             <Route path="/teacher-dashboard" element={<TeacherDashboard />} />
             <Route path="/teacher-onboarding" element={<TeacherOnboarding />} />

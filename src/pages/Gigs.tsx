@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
@@ -101,6 +101,12 @@ const Gigs = () => {
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
             Find talented performers for weddings, church services, corporate events, and more
           </p>
+          <Button asChild>
+            <Link to="/gig-onboarding">
+              <Music className="h-4 w-4 mr-2" />
+              Become a Performer
+            </Link>
+          </Button>
         </div>
       </section>
 

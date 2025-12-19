@@ -385,7 +385,7 @@ const TeacherCard = ({ teacher }: { teacher: TeacherData }) => {
               <span className="text-sm text-muted-foreground"> KSH/hr</span>
             </div>
             <Button size="sm" asChild>
-              <Link to={`/auth`}>Book Lesson</Link>
+              <Link to={`/teachers/${teacher.id}`}>View Profile</Link>
             </Button>
           </div>
         </div>

@@ -195,16 +195,51 @@ const TeacherDashboard = () => {
   };
 
   const updateLessonStatus = async (lessonId: string, status: string) => {
+    const lesson = lessons.find(l => l.id === lessonId);
+    
+    // If confirming an online lesson, try to create a Zoom meeting
+    let meetingLink: string | null = null;
+    if (status === 'confirmed' && lesson?.lesson_type === 'online') {
+      try {
+        const response = await supabase.functions.invoke('create-zoom-meeting', {
+          body: {
+            topic: `${lesson.instruments?.name} Lesson`,
+            start_time: lesson.scheduled_at,
+            duration: lesson.duration_minutes,
+            agenda: `Music lesson with ${lesson.student_profile?.full_name || 'Student'}`
+          }
+        });
+        
+        if (response.data?.join_url) {
+          meetingLink = response.data.join_url;
+        } else if (response.error) {
+          console.log('Zoom not configured, continuing without meeting link');
+        }
+      } catch (err) {
+        console.log('Could not create Zoom meeting:', err);
+      }
+    }
+
+    const updateData: { status: string; meeting_link?: string } = { status };
+    if (meetingLink) {
+      updateData.meeting_link = meetingLink;
+    }
+
     const { error } = await supabase
       .from('lessons')
-      .update({ status })
+      .update(updateData)
       .eq('id', lessonId);
 
     if (error) {
       toast({ title: 'Error', description: 'Failed to update lesson', variant: 'destructive' });
     } else {
-      setLessons(prev => prev.map(l => l.id === lessonId ? { ...l, status } : l));
-      toast({ title: 'Updated', description: `Lesson ${status}` });
+      setLessons(prev => prev.map(l => 
+        l.id === lessonId ? { ...l, status, meeting_link: meetingLink || l.meeting_link } : l
+      ));
+      toast({ 
+        title: 'Lesson Confirmed', 
+        description: meetingLink ? 'Zoom meeting link created!' : 'Lesson confirmed successfully'
+      });
     }
   };
 

@@ -12,70 +12,73 @@
 
 @layer base {
   :root {
-    /* White, Bright Teal & Black palette */
-    --background: 0 0% 100%;
-    --foreground: 0 0% 5%;
+    /* Poppy Music-Centric Palette - Electric & Bold */
+    --background: 260 20% 98%;
+    --foreground: 260 60% 8%;
 
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 5%;
+    --card-foreground: 260 60% 8%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 5%;
+    --popover-foreground: 260 60% 8%;
 
-    /* Bright Teal primary */
-    --primary: 174 90% 45%;
+    /* Electric Violet primary - Stage lights vibe */
+    --primary: 270 90% 60%;
     --primary-foreground: 0 0% 100%;
 
-    /* Medium teal secondary */
-    --secondary: 174 75% 35%;
+    /* Hot Magenta secondary */
+    --secondary: 320 85% 55%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 174 30% 92%;
-    --muted-foreground: 0 0% 25%;
+    --muted: 260 20% 94%;
+    --muted-foreground: 260 15% 40%;
 
-    /* Bright teal accent */
-    --accent: 174 85% 50%;
+    /* Neon Coral accent - Pop energy */
+    --accent: 15 95% 60%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 72% 50%;
+    --destructive: 0 85% 55%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 174 40% 82%;
-    --input: 174 40% 82%;
-    --ring: 174 90% 45%;
+    --border: 260 25% 88%;
+    --input: 260 25% 88%;
+    --ring: 270 90% 60%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
-    /* Custom bright teal shades */
-    --teal-light: 174 70% 88%;
-    --teal-medium: 174 85% 55%;
-    --teal-dark: 174 80% 38%;
-    --teal-vibrant: 174 100% 50%;
+    /* Custom music-themed colors */
+    --neon-pink: 330 100% 65%;
+    --electric-blue: 220 100% 60%;
+    --stage-purple: 270 85% 55%;
+    --coral-pop: 15 95% 60%;
+    --golden-beat: 45 100% 55%;
 
-    /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(174 85% 42%) 0%, hsl(174 100% 50%) 50%, hsl(180 90% 55%) 100%);
-    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(174 40% 97%) 100%);
-    --gradient-accent: linear-gradient(135deg, hsl(174 85% 48%) 0%, hsl(180 80% 55%) 100%);
+    /* Dynamic Gradients - Album art inspired */
+    --gradient-hero: linear-gradient(135deg, hsl(270 90% 55%) 0%, hsl(320 85% 55%) 35%, hsl(15 95% 60%) 70%, hsl(45 100% 55%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(270 30% 97%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(320 85% 55%) 0%, hsl(270 90% 60%) 100%);
+    --gradient-neon: linear-gradient(135deg, hsl(330 100% 65%) 0%, hsl(270 90% 60%) 50%, hsl(220 100% 60%) 100%);
 
-    /* Shadows */
-    --shadow-warm: 0 4px 20px -4px hsl(174 70% 40% / 0.25);
-    --shadow-glow: 0 0 40px hsl(174 80% 45% / 0.35);
-    --shadow-card: 0 8px 30px -8px hsl(0 0% 0% / 0.1);
+    /* Glowing Shadows - Concert lighting feel */
+    --shadow-warm: 0 4px 25px -4px hsl(320 85% 55% / 0.3);
+    --shadow-glow: 0 0 50px hsl(270 90% 60% / 0.4);
+    --shadow-card: 0 8px 35px -8px hsl(260 40% 20% / 0.12);
+    --shadow-neon: 0 0 30px hsl(330 100% 65% / 0.5);
 
-    --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 0 0% 5%;
-    --sidebar-primary: 174 90% 45%;
+    --sidebar-background: 260 20% 98%;
+    --sidebar-foreground: 260 60% 8%;
+    --sidebar-primary: 270 90% 60%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 174 85% 50%;
+    --sidebar-accent: 320 85% 55%;
     --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 174 40% 85%;
-    --sidebar-ring: 174 90% 45%;
-    --chart-1: 174 90% 45%;
-    --chart-2: 174 85% 55%;
-    --chart-3: 174 75% 60%;
-    --chart-4: 174 60% 70%;
-    --chart-5: 174 45% 80%;
-    --sidebar: 0 0% 100%;
+    --sidebar-border: 260 25% 88%;
+    --sidebar-ring: 270 90% 60%;
+    --chart-1: 270 90% 60%;
+    --chart-2: 320 85% 55%;
+    --chart-3: 15 95% 60%;
+    --chart-4: 45 100% 55%;
+    --chart-5: 220 100% 60%;
+    --sidebar: 260 20% 98%;
     --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
     --font-serif: 'Lora', ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
     --font-mono: 'Space Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
@@ -92,57 +95,60 @@
   }
 
   .dark {
-    --background: 0 0% 5%;
+    /* Dark mode - Stage/Club atmosphere */
+    --background: 260 30% 6%;
     --foreground: 0 0% 98%;
 
-    --card: 0 0% 8%;
+    --card: 260 25% 10%;
     --card-foreground: 0 0% 98%;
 
-    --popover: 0 0% 10%;
+    --popover: 260 25% 12%;
     --popover-foreground: 0 0% 98%;
 
-    /* Bright teal for dark mode */
-    --primary: 174 100% 55%;
-    --primary-foreground: 0 0% 5%;
+    /* Neon Violet for dark - Glow effect */
+    --primary: 270 100% 68%;
+    --primary-foreground: 260 30% 6%;
 
-    --secondary: 174 70% 75%;
-    --secondary-foreground: 0 0% 5%;
+    /* Hot Pink secondary */
+    --secondary: 320 100% 65%;
+    --secondary-foreground: 260 30% 6%;
 
-    --muted: 0 0% 20%;
-    --muted-foreground: 0 0% 70%;
+    --muted: 260 20% 18%;
+    --muted-foreground: 260 15% 65%;
 
-    --accent: 174 90% 60%;
-    --accent-foreground: 0 0% 5%;
+    /* Electric Coral */
+    --accent: 15 100% 65%;
+    --accent-foreground: 260 30% 6%;
 
-    --destructive: 0 84% 60%;
+    --destructive: 0 90% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 174 100% 55%;
+    --border: 260 20% 22%;
+    --input: 260 20% 22%;
+    --ring: 270 100% 68%;
 
-    --sidebar-background: 0 0% 5%;
+    --sidebar-background: 260 30% 6%;
     --sidebar-foreground: 0 0% 98%;
-    --sidebar-primary: 174 100% 55%;
-    --sidebar-primary-foreground: 0 0% 5%;
-    --sidebar-accent: 174 90% 60%;
-    --sidebar-accent-foreground: 0 0% 5%;
-    --sidebar-border: 0 0% 20%;
-    --sidebar-ring: 174 100% 55%;
-    --chart-1: 174 100% 55%;
-    --chart-2: 174 90% 65%;
-    --chart-3: 174 80% 72%;
-    --chart-4: 174 65% 80%;
-    --chart-5: 174 50% 85%;
-    --sidebar: 0 0% 8%;
-    --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
-    --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
-    --shadow-sm: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
-    --shadow: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
-    --shadow-md: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 2px 4px -1px hsl(0 0% 0% / 0.1);
-    --shadow-lg: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 4px 6px -1px hsl(0 0% 0% / 0.1);
-    --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 8px 10px -1px hsl(0 0% 0% / 0.1);
-    --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
+    --sidebar-primary: 270 100% 68%;
+    --sidebar-primary-foreground: 260 30% 6%;
+    --sidebar-accent: 320 100% 65%;
+    --sidebar-accent-foreground: 260 30% 6%;
+    --sidebar-border: 260 20% 22%;
+    --sidebar-ring: 270 100% 68%;
+    --chart-1: 270 100% 68%;
+    --chart-2: 320 100% 65%;
+    --chart-3: 15 100% 65%;
+    --chart-4: 45 100% 60%;
+    --chart-5: 220 100% 65%;
+    --sidebar: 260 25% 10%;
+    --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.1);
+    --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.1);
+    --shadow-sm: 0 1px 3px 0px hsl(0 0% 0% / 0.15), 0 1px 2px -1px hsl(0 0% 0% / 0.15);
+    --shadow: 0 1px 3px 0px hsl(0 0% 0% / 0.15), 0 1px 2px -1px hsl(0 0% 0% / 0.15);
+    --shadow-md: 0 1px 3px 0px hsl(0 0% 0% / 0.15), 0 2px 4px -1px hsl(0 0% 0% / 0.15);
+    --shadow-lg: 0 1px 3px 0px hsl(0 0% 0% / 0.15), 0 4px 6px -1px hsl(0 0% 0% / 0.15);
+    --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.15), 0 8px 10px -1px hsl(0 0% 0% / 0.15);
+    --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.35);
   }
 }
 
@@ -169,6 +175,10 @@
     background: var(--gradient-accent);
   }
 
+  .gradient-neon {
+    background: var(--gradient-neon);
+  }
+
   .shadow-warm {
     box-shadow: var(--shadow-warm);
   }
@@ -181,8 +191,13 @@
     box-shadow: var(--shadow-card);
   }
 
+  .shadow-neon {
+    box-shadow: var(--shadow-neon);
+  }
+
+  /* Vibrant gradient text - Stage lights */
   .text-gradient {
-    background: linear-gradient(135deg, hsl(174 90% 42%) 0%, hsl(174 100% 50%) 50%, hsl(180 95% 55%) 100%);
+    background: linear-gradient(135deg, hsl(270 90% 60%) 0%, hsl(320 85% 55%) 40%, hsl(15 95% 60%) 80%, hsl(45 100% 55%) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -200,8 +215,14 @@
   }
 
   @keyframes pulse-glow {
-    0%, 100% { opacity: 0.5; }
-    50% { opacity: 1; }
+    0%, 100% { 
+      opacity: 0.5;
+      filter: blur(0px);
+    }
+    50% { 
+      opacity: 1;
+      filter: blur(2px);
+    }
   }
 
   @keyframes slide-up {
@@ -212,6 +233,29 @@
   @keyframes fade-in {
     from { opacity: 0; }
     to { opacity: 1; }
+  }
+
+  /* New music-centric animations */
+  @keyframes beat {
+    0%, 100% { transform: scale(1); }
+    25% { transform: scale(1.05); }
+    50% { transform: scale(1); }
+    75% { transform: scale(1.02); }
+  }
+
+  @keyframes neon-pulse {
+    0%, 100% { 
+      box-shadow: 0 0 5px hsl(270 90% 60% / 0.5), 0 0 20px hsl(320 85% 55% / 0.3);
+    }
+    50% { 
+      box-shadow: 0 0 20px hsl(270 90% 60% / 0.8), 0 0 40px hsl(320 85% 55% / 0.5);
+    }
+  }
+
+  @keyframes stage-lights {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
   }
 
   .animate-wave {
@@ -232,6 +276,19 @@
 
   .animate-fade-in {
     animation: fade-in 0.5s ease-out forwards;
+  }
+
+  .animate-beat {
+    animation: beat 0.6s ease-in-out infinite;
+  }
+
+  .animate-neon-pulse {
+    animation: neon-pulse 2s ease-in-out infinite;
+  }
+
+  .animate-stage-lights {
+    background-size: 200% 200%;
+    animation: stage-lights 4s ease infinite;
   }
 
   .delay-100 { animation-delay: 100ms; }

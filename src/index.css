@@ -12,72 +12,70 @@
 
 @layer base {
   :root {
-    /* Warm African sunset palette */
-    --background: 209 40% 96%;
-    --foreground: 222 47% 11%;
+    /* White, Teal & Black palette - Teal dominant */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 5%;
 
-    --card: 210 40% 98%;
-    --card-foreground: 222 47% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 5%;
 
-    --popover: 214 31% 91%;
-    --popover-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 5%;
 
-    /* Warm amber/orange primary */
-    --primary: 200 98% 39%;
-    --primary-foreground: 204 100% 97%;
+    /* Vibrant Teal primary */
+    --primary: 174 72% 40%;
+    --primary-foreground: 0 0% 100%;
 
-    /* Earth tones secondary */
-    --secondary: 215 24% 26%;
-    --secondary-foreground: 210 40% 98%;
+    /* Dark teal secondary */
+    --secondary: 174 60% 25%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 215 20% 65%;
-    --muted-foreground: 222 47% 11%;
+    --muted: 174 20% 90%;
+    --muted-foreground: 0 0% 25%;
 
-    /* Vibrant teal accent */
-    --accent: 210 40% 98%;
-    --accent-foreground: 215 19% 34%;
+    /* Teal accent */
+    --accent: 174 65% 45%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 72% 50%;
-    --destructive-foreground: 0 85% 97%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 212 26% 83%;
-    --input: 212 26% 83%;
-    --ring: 200 98% 39%;
+    --border: 174 30% 80%;
+    --input: 174 30% 80%;
+    --ring: 174 72% 40%;
 
     --radius: 0.5rem;
 
-    /* Custom colors */
-    --amber-glow: 35 100% 60%;
-    --sunset-orange: 15 90% 55%;
-    --earth-brown: 25 35% 25%;
-    --teal-vibrant: 175 70% 45%;
-    --cream: 40 40% 96%;
-    --gold: 45 95% 55%;
+    /* Custom teal shades */
+    --teal-light: 174 60% 85%;
+    --teal-medium: 174 65% 50%;
+    --teal-dark: 174 70% 30%;
+    --teal-vibrant: 174 80% 45%;
 
     /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(25 95% 53%) 0%, hsl(35 100% 60%) 50%, hsl(45 95% 55%) 100%);
-    --gradient-card: linear-gradient(180deg, hsl(35 30% 97%) 0%, hsl(35 25% 95%) 100%);
-    --gradient-accent: linear-gradient(135deg, hsl(175 65% 40%) 0%, hsl(185 60% 50%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(174 70% 35%) 0%, hsl(174 80% 45%) 50%, hsl(180 70% 50%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(174 30% 97%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(174 65% 40%) 0%, hsl(180 60% 50%) 100%);
 
     /* Shadows */
-    --shadow-warm: 0 4px 20px -4px hsl(25 95% 53% / 0.2);
-    --shadow-glow: 0 0 40px hsl(25 95% 53% / 0.3);
-    --shadow-card: 0 8px 30px -8px hsl(25 40% 12% / 0.1);
+    --shadow-warm: 0 4px 20px -4px hsl(174 70% 40% / 0.25);
+    --shadow-glow: 0 0 40px hsl(174 80% 45% / 0.35);
+    --shadow-card: 0 8px 30px -8px hsl(0 0% 0% / 0.1);
 
-    --sidebar-background: 35 30% 97%;
-    --sidebar-foreground: 222 47% 11%;
-    --sidebar-primary: 200 98% 39%;
-    --sidebar-primary-foreground: 204 100% 97%;
-    --sidebar-accent: 215 24% 26%;
-    --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 212 26% 83%;
-    --sidebar-ring: 200 98% 39%;
-    --chart-1: 198 93% 59%;
-    --chart-2: 213 93% 67%;
-    --chart-3: 215 20% 65%;
-    --chart-4: 215 16% 46%;
-    --chart-5: 215 19% 34%;
-    --sidebar: 210 40% 98%;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 0 0% 5%;
+    --sidebar-primary: 174 72% 40%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 174 65% 45%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 174 30% 85%;
+    --sidebar-ring: 174 72% 40%;
+    --chart-1: 174 72% 40%;
+    --chart-2: 174 60% 50%;
+    --chart-3: 174 50% 60%;
+    --chart-4: 174 40% 70%;
+    --chart-5: 174 30% 80%;
+    --sidebar: 0 0% 100%;
     --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
     --font-serif: 'Lora', ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
     --font-mono: 'Space Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
@@ -94,48 +92,49 @@
   }
 
   .dark {
-    --background: 222 47% 11%;
-    --foreground: 210 40% 98%;
+    --background: 0 0% 5%;
+    --foreground: 0 0% 98%;
 
-    --card: 217 32% 17%;
-    --card-foreground: 210 40% 98%;
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 215 24% 26%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 198 93% 59%;
-    --primary-foreground: 204 80% 15%;
+    /* Bright teal for dark mode */
+    --primary: 174 80% 50%;
+    --primary-foreground: 0 0% 5%;
 
-    --secondary: 212 26% 83%;
-    --secondary-foreground: 228 84% 4%;
+    --secondary: 174 50% 70%;
+    --secondary-foreground: 0 0% 5%;
 
-    --muted: 215 16% 46%;
-    --muted-foreground: 210 40% 98%;
+    --muted: 0 0% 20%;
+    --muted-foreground: 0 0% 70%;
 
-    --accent: 228 84% 4%;
-    --accent-foreground: 215 20% 65%;
+    --accent: 174 70% 55%;
+    --accent-foreground: 0 0% 5%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 0 85% 97%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 215 19% 34%;
-    --input: 215 19% 34%;
-    --ring: 198 93% 59%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 174 80% 50%;
 
-    --sidebar-background: 25 30% 8%;
-    --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 198 93% 59%;
-    --sidebar-primary-foreground: 204 80% 15%;
-    --sidebar-accent: 215 20% 65%;
-    --sidebar-accent-foreground: 228 84% 4%;
-    --sidebar-border: 215 19% 34%;
-    --sidebar-ring: 198 93% 59%;
-    --chart-1: 199 95% 73%;
-    --chart-2: 211 96% 78%;
-    --chart-3: 215 20% 65%;
-    --chart-4: 215 16% 46%;
-    --chart-5: 215 19% 34%;
-    --sidebar: 217 32% 17%;
+    --sidebar-background: 0 0% 5%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 174 80% 50%;
+    --sidebar-primary-foreground: 0 0% 5%;
+    --sidebar-accent: 174 70% 55%;
+    --sidebar-accent-foreground: 0 0% 5%;
+    --sidebar-border: 0 0% 20%;
+    --sidebar-ring: 174 80% 50%;
+    --chart-1: 174 80% 50%;
+    --chart-2: 174 70% 60%;
+    --chart-3: 174 60% 70%;
+    --chart-4: 174 50% 80%;
+    --chart-5: 174 40% 85%;
+    --sidebar: 0 0% 8%;
     --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
     --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
     --shadow-sm: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
@@ -183,7 +182,7 @@
   }
 
   .text-gradient {
-    background: linear-gradient(135deg, hsl(25 95% 53%) 0%, hsl(35 100% 60%) 50%, hsl(45 95% 55%) 100%);
+    background: linear-gradient(135deg, hsl(174 70% 35%) 0%, hsl(174 80% 45%) 50%, hsl(180 70% 50%) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

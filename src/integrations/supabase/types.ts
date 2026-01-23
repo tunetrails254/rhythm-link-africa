@@ -14,6 +14,39 @@ export type Database = {
   }
   public: {
     Tables: {
+      child_profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          date_of_birth: string | null
+          full_name: string
+          id: string
+          notes: string | null
+          parent_id: string
+          updated_at: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          date_of_birth?: string | null
+          full_name: string
+          id?: string
+          notes?: string | null
+          parent_id: string
+          updated_at?: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          date_of_birth?: string | null
+          full_name?: string
+          id?: string
+          notes?: string | null
+          parent_id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       gig_bookings: {
         Row: {
           client_id: string
@@ -165,6 +198,7 @@ export type Database = {
       }
       lessons: {
         Row: {
+          child_id: string | null
           created_at: string
           duration_minutes: number | null
           id: string
@@ -180,6 +214,7 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          child_id?: string | null
           created_at?: string
           duration_minutes?: number | null
           id?: string
@@ -195,6 +230,7 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          child_id?: string | null
           created_at?: string
           duration_minutes?: number | null
           id?: string
@@ -210,6 +246,13 @@ export type Database = {
           updated_at?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "lessons_child_id_fkey"
+            columns: ["child_id"]
+            isOneToOne: false
+            referencedRelation: "child_profiles"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "lessons_instrument_id_fkey"
             columns: ["instrument_id"]
@@ -412,7 +455,7 @@ export type Database = {
       }
     }
     Enums: {
-      app_role: "student" | "teacher"
+      app_role: "student" | "teacher" | "parent"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -540,7 +583,7 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
-      app_role: ["student", "teacher"],
+      app_role: ["student", "teacher", "parent"],
     },
   },
 } as const

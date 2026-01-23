@@ -9,7 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { MusicWaves } from '@/components/MusicWaves';
 import { toast } from '@/hooks/use-toast';
-import { Music, GraduationCap, Mic2, Loader2 } from 'lucide-react';
+import { Music, GraduationCap, Mic2, Loader2, Users } from 'lucide-react';
 
 const emailSchema = z.string().email('Please enter a valid email address');
 const passwordSchema = z.string().min(6, 'Password must be at least 6 characters');
@@ -21,7 +21,7 @@ const Auth = () => {
   const { user, signIn, signUp, signInWithProvider, loading: authLoading } = useAuth();
   
   const [isLogin, setIsLogin] = useState(true);
-  const [userType, setUserType] = useState<'student' | 'teacher'>('student');
+  const [userType, setUserType] = useState<'student' | 'teacher' | 'parent'>('student');
   const [loading, setLoading] = useState(false);
   const [providerLoading, setProviderLoading] = useState(false);
 
@@ -109,15 +109,20 @@ const Auth = () => {
       }
       toast({ title: 'Sign Up Failed', description: message, variant: 'destructive' });
     } else {
+      const descriptions: Record<string, string> = {
+        teacher: 'Please complete your teacher profile.',
+        parent: 'Welcome! You can now add your children and book lessons for them.',
+        student: 'Please check your email to verify your account.'
+      };
       toast({ 
         title: 'Account Created!', 
-        description: userType === 'teacher' 
-          ? 'Please complete your teacher profile.' 
-          : 'Please check your email to verify your account.' 
+        description: descriptions[userType]
       });
-      // Redirect teachers to complete their profile
+      // Redirect based on user type
       if (userType === 'teacher') {
         navigate('/teacher-onboarding');
+      } else if (userType === 'parent') {
+        navigate('/parent-dashboard');
       }
     }
     
@@ -217,31 +222,44 @@ const Auth = () => {
                 </CardHeader>
                 <CardContent>
                   {/* User Type Selection */}
-                  <div className="grid grid-cols-2 gap-3 mb-6">
+                  <div className="grid grid-cols-3 gap-2 mb-6">
                     <button
                       type="button"
                       onClick={() => setUserType('student')}
-                      className={`p-4 rounded-lg border-2 transition-all ${
+                      className={`p-3 rounded-lg border-2 transition-all ${
                         userType === 'student' 
                           ? 'border-primary bg-primary/10' 
                           : 'border-border hover:border-primary/50'
                       }`}
                     >
-                      <GraduationCap className={`h-8 w-8 mx-auto mb-2 ${userType === 'student' ? 'text-primary' : 'text-muted-foreground'}`} />
-                      <p className={`font-medium ${userType === 'student' ? 'text-primary' : ''}`}>Student</p>
+                      <GraduationCap className={`h-6 w-6 mx-auto mb-1 ${userType === 'student' ? 'text-primary' : 'text-muted-foreground'}`} />
+                      <p className={`text-sm font-medium ${userType === 'student' ? 'text-primary' : ''}`}>Student</p>
                       <p className="text-xs text-muted-foreground">Learn music</p>
                     </button>
                     <button
                       type="button"
+                      onClick={() => setUserType('parent')}
+                      className={`p-3 rounded-lg border-2 transition-all ${
+                        userType === 'parent' 
+                          ? 'border-primary bg-primary/10' 
+                          : 'border-border hover:border-primary/50'
+                      }`}
+                    >
+                      <Users className={`h-6 w-6 mx-auto mb-1 ${userType === 'parent' ? 'text-primary' : 'text-muted-foreground'}`} />
+                      <p className={`text-sm font-medium ${userType === 'parent' ? 'text-primary' : ''}`}>Parent</p>
+                      <p className="text-xs text-muted-foreground">For your kids</p>
+                    </button>
+                    <button
+                      type="button"
                       onClick={() => setUserType('teacher')}
-                      className={`p-4 rounded-lg border-2 transition-all ${
+                      className={`p-3 rounded-lg border-2 transition-all ${
                         userType === 'teacher' 
                           ? 'border-primary bg-primary/10' 
                           : 'border-border hover:border-primary/50'
                       }`}
                     >
-                      <Mic2 className={`h-8 w-8 mx-auto mb-2 ${userType === 'teacher' ? 'text-primary' : 'text-muted-foreground'}`} />
-                      <p className={`font-medium ${userType === 'teacher' ? 'text-primary' : ''}`}>Teacher</p>
+                      <Mic2 className={`h-6 w-6 mx-auto mb-1 ${userType === 'teacher' ? 'text-primary' : 'text-muted-foreground'}`} />
+                      <p className={`text-sm font-medium ${userType === 'teacher' ? 'text-primary' : ''}`}>Teacher</p>
                       <p className="text-xs text-muted-foreground">Teach & earn</p>
                     </button>
                   </div>
@@ -299,7 +317,7 @@ const Auth = () => {
 
                     <Button type="submit" className="w-full" disabled={loading}>
                       {loading ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : null}
-                      Create {userType === 'teacher' ? 'Teacher' : 'Student'} Account
+                      Create {userType === 'teacher' ? 'Teacher' : userType === 'parent' ? 'Parent' : 'Student'} Account
                     </Button>
                   </form>
 

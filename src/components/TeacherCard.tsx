@@ -1,7 +1,9 @@
+import { Link } from "react-router-dom";
 import { Star, MapPin, Video, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface TeacherCardProps {
+  id?: string;
   name: string;
   image: string;
   instruments: string[];
@@ -13,6 +15,7 @@ interface TeacherCardProps {
 }
 
 export const TeacherCard = ({
+  id,
   name,
   image,
   instruments,
@@ -51,21 +54,25 @@ export const TeacherCard = ({
           </div>
           <div className="flex items-center gap-1 text-sm">
             <Star className="h-4 w-4 text-gold fill-gold" />
-            <span className="font-semibold">{rating}</span>
-            <span className="text-muted-foreground">({reviews})</span>
+            <span className="font-semibold">{rating > 0 ? rating : 'New'}</span>
+            {reviews > 0 && <span className="text-muted-foreground">({reviews})</span>}
           </div>
         </div>
 
         {/* Instruments */}
         <div className="flex flex-wrap gap-2 mb-4">
-          {instruments.map((instrument) => (
-            <span
-              key={instrument}
-              className="text-xs bg-secondary text-secondary-foreground px-2 py-1 rounded-md"
-            >
-              {instrument}
-            </span>
-          ))}
+          {instruments.length > 0 ? (
+            instruments.map((instrument) => (
+              <span
+                key={instrument}
+                className="text-xs bg-secondary text-secondary-foreground px-2 py-1 rounded-md"
+              >
+                {instrument}
+              </span>
+            ))
+          ) : (
+            <span className="text-xs text-muted-foreground">No instruments listed</span>
+          )}
         </div>
 
         {/* Price and CTA */}
@@ -75,7 +82,9 @@ export const TeacherCard = ({
             <span className="font-semibold text-foreground">KSH {price.toLocaleString()}</span>
             <span>/hour</span>
           </div>
-          <Button size="sm">Book Now</Button>
+          <Button size="sm" asChild>
+            <Link to={id ? `/teachers/${id}` : '#'}>Book Now</Link>
+          </Button>
         </div>
       </div>
     </div>

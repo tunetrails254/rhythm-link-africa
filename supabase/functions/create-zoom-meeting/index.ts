@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -12,6 +13,54 @@ serve(async (req) => {
   }
 
   try {
+    // Verify authentication - extract and validate user
+    const authHeader = req.headers.get('Authorization');
+    if (!authHeader) {
+      console.error('Missing authorization header');
+      return new Response(
+        JSON.stringify({ error: 'Missing authorization header' }),
+        { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    // Create Supabase client with user's auth context
+    const supabaseUrl = Deno.env.get('SUPABASE_URL') ?? '';
+    const supabaseAnonKey = Deno.env.get('SUPABASE_ANON_KEY') ?? '';
+    
+    const supabaseClient = createClient(supabaseUrl, supabaseAnonKey, {
+      global: { headers: { Authorization: authHeader } }
+    });
+
+    // Get the authenticated user
+    const { data: { user }, error: userError } = await supabaseClient.auth.getUser();
+    if (userError || !user) {
+      console.error('User authentication failed:', userError?.message);
+      return new Response(
+        JSON.stringify({ error: 'Unauthorized' }),
+        { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    console.log('Authenticated user:', user.id);
+
+    // CRITICAL: Verify user is a teacher
+    const { data: teacherProfile, error: teacherError } = await supabaseClient
+      .from('teacher_profiles')
+      .select('id')
+      .eq('user_id', user.id)
+      .single();
+
+    if (teacherError || !teacherProfile) {
+      console.error('User is not a teacher:', user.id);
+      return new Response(
+        JSON.stringify({ error: 'Only teachers can create Zoom meetings' }),
+        { status: 403, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    console.log('Verified teacher profile:', teacherProfile.id);
+
+    // Check Zoom credentials
     const ZOOM_ACCOUNT_ID = Deno.env.get('ZOOM_ACCOUNT_ID');
     const ZOOM_CLIENT_ID = Deno.env.get('ZOOM_CLIENT_ID');
     const ZOOM_CLIENT_SECRET = Deno.env.get('ZOOM_CLIENT_SECRET');
@@ -32,7 +81,22 @@ serve(async (req) => {
 
     const { topic, start_time, duration, agenda } = await req.json();
 
-    console.log('Creating Zoom meeting:', { topic, start_time, duration });
+    // Basic input validation
+    if (!topic || typeof topic !== 'string' || topic.length > 200) {
+      return new Response(
+        JSON.stringify({ error: 'Invalid topic: must be a string under 200 characters' }),
+        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    if (duration && (typeof duration !== 'number' || duration < 15 || duration > 480)) {
+      return new Response(
+        JSON.stringify({ error: 'Invalid duration: must be between 15 and 480 minutes' }),
+        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    console.log('Creating Zoom meeting for teacher:', teacherProfile.id, { topic, start_time, duration });
 
     // Get OAuth access token using Server-to-Server OAuth
     const tokenResponse = await fetch(
@@ -88,7 +152,7 @@ serve(async (req) => {
 
     const meetingData = await meetingResponse.json();
     
-    console.log('Zoom meeting created successfully:', meetingData.id);
+    console.log('Zoom meeting created successfully by teacher:', teacherProfile.id, 'meeting:', meetingData.id);
 
     return new Response(
       JSON.stringify({

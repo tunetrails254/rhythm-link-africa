@@ -11,10 +11,11 @@ import { Calendar } from '@/components/ui/calendar';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
 import { toast } from 'sonner';
-import { 
-  Star, MapPin, User, Video, Users, Clock, Music, 
-  Calendar as CalendarIcon, Loader2, ArrowLeft, CheckCircle
-} from 'lucide-react';
+ import { 
+   Star, MapPin, User, Video, Users, Clock, Music, 
+   Calendar as CalendarIcon, Loader2, ArrowLeft, CheckCircle
+ } from 'lucide-react';
+ import { ChatDialog } from '@/components/ChatDialog';
 
 interface TeacherProfile {
   id: string;
@@ -258,14 +259,22 @@ const TeacherDetail = () => {
                             <span>{teacher.total_lessons} lessons taught</span>
                           </div>
                         )}
-                        {teacher.is_online_available && (
-                          <div className="flex items-center gap-2 text-sm">
-                            <Video className="h-4 w-4 text-accent" />
-                            <span>Online available</span>
-                          </div>
-                        )}
-                      </div>
-                    </div>
+                       {teacher.is_online_available && (
+                         <div className="flex items-center gap-2 text-sm">
+                           <Video className="h-4 w-4 text-accent" />
+                           <span>Online available</span>
+                         </div>
+                       )}
+                     </div>
+                     
+                     {/* Message Button */}
+                     <div className="mt-4">
+                       <ChatDialog 
+                         recipientId={teacher.user_id} 
+                         recipientName={profile.full_name} 
+                       />
+                     </div>
+                   </div>
                   </div>
                 </CardContent>
               </Card>
